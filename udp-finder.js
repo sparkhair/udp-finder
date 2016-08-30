@@ -18,7 +18,7 @@ internals.testPort = function(options, callback){
     }
 
     options.port = options.port || exports.basePort;
-    options.server = options || dgram.createSocket('udp4');
+    options.server = dgram.createSocket('udp4');
 
     debugTestPort("entered testPort(): trying port: ", options.port);
 
@@ -35,10 +35,10 @@ internals.testPort = function(options, callback){
 
         if (err.code !== 'EADDRINUSE' && err.code !== 'EACCES'){
             return callback(err);
-        }   
+        }  
+        options.server.close();
         internals.testPort({
             port: exports.nextPort(options.port),
-            server: options.server
         }, callback);
     }   
     options.server.on('error', onError);
@@ -61,8 +61,11 @@ exports.getPort = function(options, callback){
         }
         else{
             debugGetPort("testPort() callback with a success for port: ", port);
+            return callback(null, port);
         }
    });
 };
 
-
+exports.nextPort = function(port){
+    return port + 1;
+};
