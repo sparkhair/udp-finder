@@ -1,6 +1,6 @@
 {
   "name": "udp-finder",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "udp port scanner",
   "main": "udp-finder.js",
   "scripts": {
