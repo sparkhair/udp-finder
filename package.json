@@ -8,7 +8,8 @@
   },
   "author": "jake",
   "dependencies": {
-    "debug": "2.2.x"
+    "debug": "2.2.x",
+    "async": "2.0.x"
   },
   "license": "ISC"
 }

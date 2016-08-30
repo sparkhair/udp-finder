@@ -3,6 +3,7 @@
 var fs = require('fs'),
     os = require('os'),
     path = require('path'),
+    async = require('async'),
     debug = require('debug'),
     internals = {};
 
@@ -24,14 +25,12 @@ internals.testPort = function(options, callback){
 
     function onListen(){
         debugTestPort("done with testPort(): OK, port: ", options.port);
-       // options.server.removeListener('error', onError);
         options.server.close();
         callback(null, options.port);
     }   
 
     function onError(err){
         debugTestPort("done with testPort(): failed, port: ", options.port);
-       // options.server.removeListener('listening', onListen);
 
         if (err.code !== 'EADDRINUSE' && err.code !== 'EACCES'){
             return callback(err);
@@ -64,6 +63,31 @@ exports.getPort = function(options, callback){
             return callback(null, port);
         }
    });
+};
+
+exports.getPorts = function(count, options, callback){
+    if(!callback){
+        callback = options;
+        options = {}; 
+    }   
+
+    var lastPort = null;
+
+    async.timesSeries(count, function(index, asyncCallback){
+        if(lastPort){
+            options.port = exports.nextPort(lastPort);
+        }   
+        exports.getPort(options, function(err, port){
+            if(err){
+                asyncCallback(err);
+            }   
+            else{
+                lastPort = port;
+                asyncCallback(null, port);
+            }   
+    
+        }); 
+    }, callback);
 };
 
 exports.nextPort = function(port){
