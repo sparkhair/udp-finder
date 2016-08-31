@@ -7,6 +7,14 @@
     "test": "node_modules/.bin/mocha -w"
   },
   "author": "jake",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sparkhair/udp-finder.git"
+  },
+  "keywords": [
+    "port",
+    "udp"
+  ],
   "dependencies": {
     "debug": "2.2.x",
     "async": "2.0.x",
