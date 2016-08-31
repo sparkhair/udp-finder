@@ -9,9 +9,7 @@
   "author": "jake",
   "dependencies": {
     "debug": "2.2.x",
-    "async": "2.0.x"
-  },
-  "devDependencies": {
+    "async": "2.0.x",
     "mocha": "*",
     "should": ">= 0.0.1"
   },
