@@ -18,7 +18,7 @@ internals.testPort = function(options, callback){
         options = {};
     }
 
-    options.port = options.port || exports.basePort;
+    options.port = options.port || internals.basePort;
     options.server = dgram.createSocket('udp4');
 
     debugTestPort("entered testPort(): trying port: ", options.port);
@@ -37,7 +37,7 @@ internals.testPort = function(options, callback){
         }  
         options.server.close();
         internals.testPort({
-            port: exports.nextPort(options.port),
+            port: options.port + 1
         }, callback);
     }   
     options.server.on('error', onError);
@@ -46,13 +46,18 @@ internals.testPort = function(options, callback){
 };
 
 
-exports.basePort = 8000;
+internals.basePort = 8000;
 
 exports.getPort = function(options, callback){
     if(!callback){
         callback = options;
         options = {}; 
-    }   
+    } 
+    else if(typeof options !== 'object'){
+        var tmp = options;
+        options = {};
+        options.port = tmp;
+    }
 
     return internals.testPort({port: options.port}, function(err, port){
         if(err){
@@ -69,13 +74,17 @@ exports.getPorts = function(count, options, callback){
     if(!callback){
         callback = options;
         options = {}; 
-    }   
+    } 
+    else if (typeof options !== 'object'){
+        var tmp = options;
+        options = {};
+        options.port = tmp;
+    }
 
     var lastPort = null;
-
     async.timesSeries(count, function(index, asyncCallback){
         if(lastPort){
-            options.port = exports.nextPort(lastPort);
+            options.port = lastPort + 1;
         }   
         exports.getPort(options, function(err, port){
             if(err){
@@ -90,6 +99,3 @@ exports.getPorts = function(count, options, callback){
     }, callback);
 };
 
-exports.nextPort = function(port){
-    return port + 1;
-};
