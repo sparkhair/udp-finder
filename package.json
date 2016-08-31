@@ -2,14 +2,18 @@
   "name": "udp-finder",
   "version": "1.0.3",
   "description": "udp port scanner",
-  "main": "udp-finder.js",
+  "main": "./lib/udp-finder.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha -w"
   },
   "author": "jake",
   "dependencies": {
     "debug": "2.2.x",
     "async": "2.0.x"
   },
-  "license": "ISC"
+  "devDependencies": {
+    "mocha": "*",
+    "should": ">= 0.0.1"
+  },
+  "license": "MIT"
 }
