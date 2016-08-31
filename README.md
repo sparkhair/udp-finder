@@ -8,15 +8,23 @@ $ npm install udp-finder
 ```js
 var udpFinder = require('udp-finder');
 
-udpFinder.getPort(function(err, port){
+udpFinder.getPort(basePort,function(err, port){
   //
-  //`port` will be a available port
+  //`port` will be an available port
   //
   //
 });
+
+udpFinder.getPorts(portAmount,basePort,function(err, ports){
+  //
+  //`ports` will be an array of available ports 
+  //
+  //
+});
+
 ```
-By default `udp-finder` will start the search for a available udp port from `8000`. 
-To change this simply set udpFinder.basePort.
+`basePort` is where `udp-finder` starts its search from.
+`portAmount` is the number of available ports to search for.
 Note that the `udp-finder` only search for `udp4` for now.
 
 ##Purpose
