@@ -8,14 +8,14 @@ $ npm install udp-finder
 ```js
 var udpFinder = require('udp-finder');
 
-udpFinder.getPort(basePort,function(err, port){
+udpFinder.getPort(basePort, function(err, port){
   //
   //`port` will be an available port
   //
   //
 });
 
-udpFinder.getPorts(portAmount,basePort,function(err, ports){
+udpFinder.getPorts(portAmount, basePort, function(err, ports){
   //
   //`ports` will be an array of available ports 
   //
@@ -23,7 +23,9 @@ udpFinder.getPorts(portAmount,basePort,function(err, ports){
 });
 
 ```
+
 `basePort` is where `udp-finder` starts its search from.
+For `basePort`, it can take in object in this form `{port: 3000}`, or it can just be a `port number`(e.g. 3000).
 `portAmount` is the number of available ports to search for.
 Note that the `udp-finder` only search for `udp4` for now.
 
