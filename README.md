@@ -1,7 +1,7 @@
 # udp-finder
 
 ##Installation
-```
+```bash
 $ npm install udp-finder
 ```
 ##Usage
@@ -31,6 +31,11 @@ Note that the `udp-finder` only search for `udp4` for now.
 
 ##Purpose
 `udp-finder` will be useful to those who wants to search for a available udp4 port `on the local machine`.
+
+##Run Test
+```bash
+$ npm test
+```
 ####Author : [Jake Lin](https://github.com/sparkhair)
 
 ####License: MIT
