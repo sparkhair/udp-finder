@@ -17,7 +17,9 @@
   ],
   "dependencies": {
     "debug": "2.2.x",
-    "async": "2.0.x",
+    "async": "2.0.x"
+  },
+  "devDependencies": {
     "mocha": "*",
     "should": ">= 0.0.1"
   },
