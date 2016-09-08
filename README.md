@@ -34,6 +34,8 @@ Note that the `udp-finder` only search for `udp4` for now.
 
 ##Run Test
 ```bash
+$ cd node_modules/udp-finder
+$ npm install
 $ npm test
 ```
 ####Author : [Jake Lin](https://github.com/sparkhair)
