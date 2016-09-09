@@ -7,6 +7,8 @@ $ npm install udp-finder
 ##Usage
 ```js
 var udpFinder = require('udp-finder');
+var basePort = 3000; //port search starts from 3000
+var portAmount = 5; //5 available ports to search for
 
 udpFinder.getPort(basePort, function(err, port){
   //
